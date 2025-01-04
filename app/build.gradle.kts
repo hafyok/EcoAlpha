@@ -68,4 +68,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.jackson)
 }
