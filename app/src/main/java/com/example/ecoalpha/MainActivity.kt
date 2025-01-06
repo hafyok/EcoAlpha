@@ -25,7 +25,8 @@ class MainActivity : ComponentActivity() {
         apiInterface = RetrofitInstance.getInstance().create(ApiInterface::class.java)
     }
     private fun getExampleData(){
-        val call = apiInterface.getCardData()
+        val inputData = 22006505 // Тестовые данные
+        val call = apiInterface.getCardData(inputData)
         call.enqueue(object : Callback<BinCardInfo>{
             override fun onResponse(request: Call<BinCardInfo>, response: Response<BinCardInfo>) {
                 if (response.isSuccessful && response.body() != null){

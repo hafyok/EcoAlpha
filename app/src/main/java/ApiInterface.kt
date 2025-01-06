@@ -1,8 +1,9 @@
 import com.example.ecoalpha.data.BinCardInfo
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiInterface {
-    @GET("42764000")
-    fun getCardData(): Call<BinCardInfo>
+    @GET("{cardId}")
+    fun getCardData(@Path("cardId") cardId: Int): Call<BinCardInfo>
 }
