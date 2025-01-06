@@ -70,4 +70,8 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
+    implementation(libs.androidx.navigation.compose.v260alpha04)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.navigation.compose)
 }
