@@ -6,6 +6,7 @@ kotlin = "1.9.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 navigationCompose = "2.5.1"
+hiltNavigationCompose = "1.2.0"
 navigationComposeVersion = "2.6.0-alpha04"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -15,12 +16,16 @@ composeBom = "2024.04.01"
 loggingInterceptor = "4.10.0"
 retrofit = "2.11.0"
 material = "1.4.2"
+hiltAndroid = "2.51.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterJackson" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-navigation-compose-v260alpha04 = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 androidx-material = { module = "androidx.compose.material:material", version.ref = "material" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
