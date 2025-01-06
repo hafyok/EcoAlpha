@@ -1,4 +1,4 @@
-package com.example.ecoalpha.presentation
+package com.example.ecoalpha.presentation.Navigation
 
 import com.example.ecoalpha.R
 

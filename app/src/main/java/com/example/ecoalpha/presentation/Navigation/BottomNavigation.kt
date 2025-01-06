@@ -1,4 +1,4 @@
-package com.example.ecoalpha.presentation
+package com.example.ecoalpha.presentation.Navigation
 
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.Icon
