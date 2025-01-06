@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.ecoalpha.data.BinCardInfo
+import com.example.ecoalpha.presentation.MainScreen
 import com.example.ecoalpha.ui.theme.EcoAlphaTheme
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,18 +43,13 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getApiInterface()
-        getExampleData()
+        //getApiInterface()
+        //getExampleData()
 
         enableEdgeToEdge()
         setContent {
             EcoAlphaTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                MainScreen()
             }
         }
     }
