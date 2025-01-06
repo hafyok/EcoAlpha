@@ -69,5 +69,5 @@ dependencies {
 
     implementation(libs.gson)
     implementation(libs.retrofit)
-    implementation(libs.converter.jackson)
+    implementation(libs.converter.gson)
 }
