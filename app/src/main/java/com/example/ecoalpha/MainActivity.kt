@@ -1,69 +1,23 @@
 package com.example.ecoalpha
 
-import ApiInterface
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.ecoalpha.data.BinCardInfo
 import com.example.ecoalpha.presentation.MainScreen
 import com.example.ecoalpha.ui.theme.EcoAlphaTheme
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private lateinit var apiInterface: ApiInterface
-    private fun getApiInterface(){
-        apiInterface = RetrofitInstance.getInstance().create(ApiInterface::class.java)
-    }
-    private fun getExampleData(){
-        val inputData = 22006505 // Тестовые данные
-        val call = apiInterface.getCardData(inputData)
-        call.enqueue(object : Callback<BinCardInfo>{
-            override fun onResponse(request: Call<BinCardInfo>, response: Response<BinCardInfo>) {
-                if (response.isSuccessful && response.body() != null){
-                    Log.d("rtrft", response.body().toString())
-                }
-            }
-
-            override fun onFailure(request: Call<BinCardInfo>, t: Throwable) {
-                t.printStackTrace()
-            }
-        })
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //getApiInterface()
-        //getExampleData()
-
         enableEdgeToEdge()
         setContent {
             EcoAlphaTheme {
                 MainScreen()
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    EcoAlphaTheme {
-        Greeting("Android")
     }
 }

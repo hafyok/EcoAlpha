@@ -1,3 +1,5 @@
+package com.example.ecoalpha
+
 import com.example.ecoalpha.data.BinCardInfo
 import retrofit2.Call
 import retrofit2.http.GET

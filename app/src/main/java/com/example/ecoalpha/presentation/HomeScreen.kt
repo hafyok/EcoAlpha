@@ -17,15 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun HomeScreen(){
-    BankCardInfoScreen()
-}
-
-@Preview
-@Composable
-fun BankCardInfoScreen() {
+fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -45,7 +40,10 @@ fun BankCardInfoScreen() {
             color = Color.Gray,
             modifier = Modifier.padding(bottom = 16.dp)
         )
-        Button(onClick = { /* Lookup action */ }, modifier = Modifier.align(Alignment.CenterHorizontally)) {
+        Button(
+            onClick = { /* Lookup action */ },
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        ) {
             Text(text = "Lookup")
         }
 
