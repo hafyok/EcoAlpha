@@ -1,5 +1,6 @@
 package com.example.ecoalpha.presentation
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,15 +13,26 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.ecoalpha.data.BinCardInfo
 
+@Preview
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+    var cardInfo by remember {
+        mutableStateOf(viewModel.cardInfo)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,7 +53,11 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
         Button(
-            onClick = { /* Lookup action */ },
+            onClick = {
+                Log.d("CardInfo", cardInfo.value.toString())
+                viewModel.getExampleData()
+                Log.d("CardInfo", cardInfo.value.toString())
+            },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
             Text(text = "Lookup")
@@ -49,18 +65,27 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Информация о карте
-        CardInfoRow(label = "Scheme / Network", value = "Visa")
-        CardInfoRow(label = "Type", value = "Debit / Credit")
-        CardInfoRow(label = "Brand", value = "Visa/Dankort")
-        CardInfoRow(label = "Prepaid", value = "No")
-        CardInfoRow(label = "Card Number", value = "Length: 16\nLuhn: Yes")
-        CardInfoRow(label = "Country", value = "DK Denmark\n(latitude: 56, longitude: 10)")
-        CardInfoRow(
-            label = "Bank",
-            value = "Jyske Bank, Hjørring\nwww.jyskebank.dk\n+4589893300"
-        )
+        if (cardInfo.value.scheme != null) CardInfoBank(cardInfo)
+
     }
+}
+
+@Composable
+fun CardInfoBank(cardInfo: MutableState<BinCardInfo>){
+    // Информация о карте
+    CardInfoRow(label = "Scheme / Network", value = cardInfo.value.scheme.toString())
+    CardInfoRow(label = "Type", value = cardInfo.value.type.toString())
+    CardInfoRow(label = "Brand", value = cardInfo.value.brand.toString())
+    CardInfoRow(label = "Prepaid", value = cardInfo.value.prepaid.toString())
+    CardInfoRow(
+        label = "Card Number",
+        value = "Length: ${cardInfo.value.number?.length}\nLuhn: ${cardInfo.value.number?.luhn}"
+    )
+    CardInfoRow(label = "Country", value = cardInfo.value.country?.name.toString())
+    CardInfoRow(
+        label = "Bank",
+        value = cardInfo.value.bank?.name.toString()
+    )
 }
 
 @Composable
