@@ -1,6 +1,5 @@
 package com.example.ecoalpha.presentation
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,10 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,14 +25,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.ecoalpha.data.BinCardInfo
 
 @Preview
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     var cardInfo by remember { mutableStateOf(viewModel.cardInfo) }
-    var message by remember{mutableStateOf("")}
+    var message by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -46,17 +42,17 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         // Ввод номера карты
         OutlinedTextField(
             message,
-            {message = it},
-            textStyle = TextStyle(fontSize =  16.sp),
+            { message = it },
+            textStyle = TextStyle(fontSize = 16.sp),
             modifier = Modifier.padding(8.dp),
-            placeholder = {Text("1123 8888", color = Color.Gray)}
+            placeholder = { Text("1123 8888", color = Color.Gray) }
         )
         Text(
             text = "Enter the first 8 digits of a card number (BIN/IIN)",
             color = Color.Gray,
             modifier = Modifier.padding(bottom = 16.dp)
         )
-        if(message.length == 8) {
+        if (message.length == 8) {
             Button(
                 onClick = {
                     //Log.d("CardInfo", cardInfo.value.toString())
@@ -72,12 +68,13 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         Spacer(modifier = Modifier.height(16.dp))
 
         if (cardInfo.value.scheme != null) CardInfoBank(cardInfo)
+        else (Text(text = "No info"))
 
     }
 }
 
 @Composable
-fun CardInfoBank(cardInfo: MutableState<BinCardInfo>){
+fun CardInfoBank(cardInfo: MutableState<BinCardInfo>) {
     // Информация о карте
     CardInfoRow(label = "Scheme / Network", value = cardInfo.value.scheme.toString())
     CardInfoRow(label = "Type", value = cardInfo.value.type.toString())
@@ -92,6 +89,7 @@ fun CardInfoBank(cardInfo: MutableState<BinCardInfo>){
         label = "Bank",
         value = cardInfo.value.bank?.name.toString()
     )
+
 }
 
 @Composable
