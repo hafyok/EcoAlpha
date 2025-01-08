@@ -10,10 +10,7 @@ import com.example.ecoalpha.presentation.Navigation.NavGraph
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(
-    modifier: Modifier = Modifier,
-
-) {
+fun MainScreen() {
     val navController = rememberNavController()
 
     Scaffold(

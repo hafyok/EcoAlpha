@@ -1,4 +1,4 @@
-package com.example.ecoalpha.presentation
+package com.example.ecoalpha.presentation.HomeScreen
 
 import com.example.ecoalpha.ApiInterface
 import android.util.Log

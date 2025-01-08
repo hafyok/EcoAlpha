@@ -1,4 +1,4 @@
-package com.example.ecoalpha.presentation
+package com.example.ecoalpha.presentation.HomeScreen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

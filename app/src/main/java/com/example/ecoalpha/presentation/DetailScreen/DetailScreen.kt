@@ -1,4 +1,4 @@
-package com.example.ecoalpha.presentation
+package com.example.ecoalpha.presentation.DetailScreen
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

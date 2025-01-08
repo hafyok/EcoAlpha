@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.ecoalpha.presentation.DetailScreen
-import com.example.ecoalpha.presentation.HomeScreen
+import com.example.ecoalpha.presentation.DetailScreen.DetailScreen
+import com.example.ecoalpha.presentation.HomeScreen.HomeScreen
 
 
 @Composable
