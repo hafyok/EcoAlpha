@@ -24,11 +24,10 @@ class HomeViewModel @Inject constructor(
         Log.d("HomeViewModel", "init")
     }
 
-    fun getExampleData() {
+    fun getExampleData(inputData: Int) {
         viewModelScope.launch {
             try {
                 Log.d("CardInfo", "Enter")
-                val inputData = 22006505 // Тестовые данные
                 val call = apiInterface.getCardData(inputData)
                 call.enqueue(object : Callback<BinCardInfo> {
 

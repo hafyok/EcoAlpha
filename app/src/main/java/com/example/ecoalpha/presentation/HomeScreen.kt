@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -21,8 +23,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecoalpha.data.BinCardInfo
@@ -30,9 +34,8 @@ import com.example.ecoalpha.data.BinCardInfo
 @Preview
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
-    var cardInfo by remember {
-        mutableStateOf(viewModel.cardInfo)
-    }
+    var cardInfo by remember { mutableStateOf(viewModel.cardInfo) }
+    var message by remember{mutableStateOf("")}
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,26 +44,29 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Ввод номера карты
-        Text(
-            text = "4571 7360",
-            //style = MaterialTheme.typography.h4,
-            modifier = Modifier.padding(bottom = 8.dp)
+        OutlinedTextField(
+            message,
+            {message = it},
+            textStyle = TextStyle(fontSize =  16.sp),
+            modifier = Modifier.padding(8.dp),
+            placeholder = {Text("1123 8888", color = Color.Gray)}
         )
         Text(
-            text = "Enter the first 6 to 8 digits of a card number (BIN/IIN)",
-            //style = MaterialTheme.typography.body2,
+            text = "Enter the first 8 digits of a card number (BIN/IIN)",
             color = Color.Gray,
             modifier = Modifier.padding(bottom = 16.dp)
         )
-        Button(
-            onClick = {
-                Log.d("CardInfo", cardInfo.value.toString())
-                viewModel.getExampleData()
-                Log.d("CardInfo", cardInfo.value.toString())
-            },
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        ) {
-            Text(text = "Lookup")
+        if(message.length == 8) {
+            Button(
+                onClick = {
+                    //Log.d("CardInfo", cardInfo.value.toString())
+                    viewModel.getExampleData(message.toInt())
+                    //Log.d("CardInfo", cardInfo.value.toString())
+                },
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Text(text = "Lookup")
+            }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
