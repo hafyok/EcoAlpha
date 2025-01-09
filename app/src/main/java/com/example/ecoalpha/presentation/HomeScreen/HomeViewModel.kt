@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ecoalpha.data.AppDB
 import com.example.ecoalpha.data.BinCardInfo
+import com.example.ecoalpha.data.Entity.BankCardInfoEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -15,13 +17,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val apiInterface: ApiInterface
+    private val apiInterface: ApiInterface,
+    private val appDB: AppDB
 ) : ViewModel() {
 
     var cardInfo = mutableStateOf(BinCardInfo())
 
     init {
         Log.d("HomeViewModel", "init")
+        insertCard()
     }
 
     fun getExampleData(inputData: Int) {
@@ -53,5 +57,11 @@ class HomeViewModel @Inject constructor(
 
         }
 
+    }
+
+    fun insertCard(){
+        viewModelScope.launch {
+            appDB.dao.insertBankInfo(BankCardInfoEntity(0, null, "visa", null, "brrand", null, null, null))
+        }
     }
 }
