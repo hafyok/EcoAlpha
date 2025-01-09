@@ -17,9 +17,13 @@ loggingInterceptor = "4.10.0"
 retrofit = "2.11.0"
 material = "1.4.2"
 hiltAndroid = "2.51.1"
+roomRuntime = "2.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterJackson" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-navigation-compose-v260alpha04 = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
