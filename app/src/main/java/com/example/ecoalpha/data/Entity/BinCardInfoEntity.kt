@@ -7,7 +7,7 @@ import com.example.ecoalpha.data.Country
 import com.example.ecoalpha.data.Number
 
 @Entity
-data class BankCardInfoEntity(
+data class BinCardInfoEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val number: Number? = Number(),

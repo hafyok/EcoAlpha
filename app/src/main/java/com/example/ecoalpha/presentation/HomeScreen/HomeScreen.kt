@@ -55,9 +55,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         if (message.length == 8) {
             Button(
                 onClick = {
-                    //Log.d("CardInfo", cardInfo.value.toString())
-                    viewModel.getExampleData(message.toInt())
-                    //Log.d("CardInfo", cardInfo.value.toString())
+                    viewModel.fetchData(message.toInt())
                 },
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {

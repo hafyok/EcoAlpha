@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecoalpha.data.AppDB
 import com.example.ecoalpha.data.BinCardInfo
-import com.example.ecoalpha.data.Entity.BankCardInfoEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -25,10 +24,9 @@ class HomeViewModel @Inject constructor(
 
     init {
         Log.d("HomeViewModel", "init")
-        insertCard()
     }
 
-    fun getExampleData(inputData: Int) {
+    fun fetchData(inputData: Int) {
         viewModelScope.launch {
             try {
                 Log.d("CardInfo", "Enter")
@@ -44,6 +42,8 @@ class HomeViewModel @Inject constructor(
                             cardInfo.value = response.body()!!
                             Log.d("Response", response.body().toString())
                         }
+
+                        insertCard()
                     }
 
                     override fun onFailure(request: Call<BinCardInfo>, t: Throwable) {
@@ -61,7 +61,7 @@ class HomeViewModel @Inject constructor(
 
     fun insertCard(){
         viewModelScope.launch {
-            appDB.dao.insertBankInfo(BankCardInfoEntity(0, null, "visa", null, "brrand", null, null, null))
+            appDB.dao.insertBankInfo(cardInfo.value.toEntity())
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ecoalpha.data
 
+import com.example.ecoalpha.data.Entity.BinCardInfoEntity
 import com.google.gson.annotations.SerializedName
 
 data class BinCardInfo (
@@ -12,5 +13,16 @@ data class BinCardInfo (
     @SerializedName("country" ) var country : Country? = Country(),
     @SerializedName("bank"    ) var bank    : Bank?    = Bank()
 
-)
+){
+    fun toEntity() = BinCardInfoEntity(
+        id = 0,
+        number = this.number,
+        scheme = this.scheme,
+        type = this.type,
+        brand = this.brand,
+        prepaid = this.prepaid,
+        country = this.country,
+        bank = this.bank
+    )
+}
 
