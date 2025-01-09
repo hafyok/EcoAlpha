@@ -1,10 +1,12 @@
 package com.example.ecoalpha.data.Entity
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.ecoalpha.data.Bank
 import com.example.ecoalpha.data.Country
 import com.example.ecoalpha.data.Number
 
+@Entity
 data class BankCardInfoEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
