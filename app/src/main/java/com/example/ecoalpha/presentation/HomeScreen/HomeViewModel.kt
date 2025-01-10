@@ -43,7 +43,7 @@ class HomeViewModel @Inject constructor(
                             Log.d("Response", response.body().toString())
                         }
 
-                        insertCard()
+                        insertCard(inputData)
                     }
 
                     override fun onFailure(request: Call<BinCardInfo>, t: Throwable) {
@@ -59,9 +59,9 @@ class HomeViewModel @Inject constructor(
 
     }
 
-    fun insertCard(){
+    fun insertCard(bin: Int){
         viewModelScope.launch {
-            appDB.dao.insertBankInfo(cardInfo.value.toEntity())
+            appDB.dao.insertBankInfo(cardInfo.value.toEntity(bin))
         }
     }
 }

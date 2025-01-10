@@ -10,6 +10,7 @@ import com.example.ecoalpha.data.Number
 data class BinCardInfoEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    val bin: Int,
     val number: Number? = Number(),
     val scheme: String? = null,
     val type: String? = null,

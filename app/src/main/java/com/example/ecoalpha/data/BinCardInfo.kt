@@ -14,8 +14,9 @@ data class BinCardInfo (
     @SerializedName("bank"    ) var bank    : Bank?    = Bank()
 
 ){
-    fun toEntity() = BinCardInfoEntity(
+    fun toEntity(bin: Int) = BinCardInfoEntity(
         id = 0,
+        bin = bin,
         number = this.number,
         scheme = this.scheme,
         type = this.type,
