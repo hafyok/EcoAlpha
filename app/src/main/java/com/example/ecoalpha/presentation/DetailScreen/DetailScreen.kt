@@ -18,7 +18,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.ecoalpha.data.Entity.BinCardInfoEntity
-import com.example.ecoalpha.presentation.HomeScreen.CardInfoRow
 
 @Composable
 fun DetailScreen(
@@ -31,8 +30,7 @@ fun DetailScreen(
             .padding(16.dp)
     ) {
         item { Text(text = "Query history") }
-        items(cards){
-            card ->
+        items(cards) { card ->
             if (card.scheme != null) BankCardInfo(card)
             else {
                 Card(modifier = Modifier.padding(8.dp), elevation = 4.dp) {
@@ -44,22 +42,28 @@ fun DetailScreen(
 }
 
 @Composable
-fun BankCardInfo(cardInfo: BinCardInfoEntity){
+fun BankCardInfo(cardInfo: BinCardInfoEntity) {
     Card(modifier = Modifier.padding(8.dp), elevation = 4.dp) {
         Column {
             BankCardInfoRow(label = "BIN", value = cardInfo.bin.toString())
-            BankCardInfoRow(label = "Scheme / Network", value = cardInfo.scheme.toString())
-            BankCardInfoRow(label = "Type", value = cardInfo.type.toString())
-            BankCardInfoRow(label = "Brand", value = cardInfo.brand.toString())
-            BankCardInfoRow(label = "Prepaid", value = cardInfo.prepaid.toString())
+            BankCardInfoRow(
+                label = "Scheme / Network",
+                value = cardInfo.scheme ?: "No info"
+            )
+            BankCardInfoRow(label = "Type", value = cardInfo.type ?: "No info")
+            BankCardInfoRow(label = "Brand", value = cardInfo.brand ?: "No info")
+            BankCardInfoRow(label = "Prepaid", value = cardInfo.prepaid?.toString() ?: "No info")
             BankCardInfoRow(
                 label = "Card Number",
-                value = "Length: ${cardInfo.number?.length}\nLuhn: ${cardInfo.number?.luhn}"
+                value = "Length: ${cardInfo.number?.length ?: "No info"}\nLuhn: ${cardInfo.number?.luhn ?: "No info"}"
             )
-            BankCardInfoRow(label = "Country", value = cardInfo.country?.name.toString())
+            BankCardInfoRow(
+                label = "Country",
+                value = cardInfo.country?.name ?: "No info"
+            )
             BankCardInfoRow(
                 label = "Bank",
-                value = cardInfo.bank?.name.toString()
+                value = cardInfo.bank?.name ?: "No info"
             )
         }
     }
