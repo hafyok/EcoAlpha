@@ -35,7 +35,9 @@ fun DetailScreen(
             card ->
             if (card.scheme != null) BankCardInfo(card)
             else {
-                // TODO()
+                Card(modifier = Modifier.padding(8.dp), elevation = 4.dp) {
+                    BankCardInfoRow(label = "BIN", value = card.bin.toString())
+                }
             }
         }
     }
@@ -45,6 +47,7 @@ fun DetailScreen(
 fun BankCardInfo(cardInfo: BinCardInfoEntity){
     Card(modifier = Modifier.padding(8.dp), elevation = 4.dp) {
         Column {
+            BankCardInfoRow(label = "BIN", value = cardInfo.bin.toString())
             BankCardInfoRow(label = "Scheme / Network", value = cardInfo.scheme.toString())
             BankCardInfoRow(label = "Type", value = cardInfo.type.toString())
             BankCardInfoRow(label = "Brand", value = cardInfo.brand.toString())
